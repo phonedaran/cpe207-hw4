@@ -57,42 +57,35 @@
 
                 <form method="post" action="" id="my-form">
                     <div class="row">
-                        <div class="col-12">
+                        <div class="col-4 col-12-mobile">
                             <input type="text" name="" placeholder="Subject" id="subject" />
                         </div>
-                        <div class="col-4">
+                        <div class="col-4 col-6-mobile">
+                            <input type="text" name="" placeholder="Name" id="name" />
+                        </div>
+                        <div class="col-4 col-6-mobile">
+                            <input type="text" name="" placeholder="Gender" id="gender" />
+                        </div>
+                        <div class="col-4 col-12-mobile">
                             <textarea name="" placeholder="Message" id="message"></textarea>
                         </div>
-
-                        <div class="row">
-                            <div class="col-6">
-                                <input type="text" name="" placeholder="Name" id="name" /><br>
-                                <input type="text" name="" placeholder="Phone" id="phone" /><br>
-                                <input type="submit" class="primary" value="Send Message" id="submit" />
-                            </div>
-                            <div class="col-6">
-                                <input type="text" name="" placeholder="Gender" id="gender" /><br>
-                                <input type="text" name="" placeholder="Email" id="email" /><br>
-                                <input type="reset" value="Reset" />
-                            </div>
-
+                        <div class="col-4 col-6-mobile">
+                            <input type="text" name="" placeholder="Phone" id="phone" /><br>
+                            <input type="submit" class="primary" value="Send Message" id="submit" />
                         </div>
-
-
-                    </div>
-
-                    <div class="col-12 msg"></div>
-                    <div class="col-12">
-
+                        <div class="col-4 col-6-mobile">
+                            <input type="text" name="" placeholder="Email" id="email" /><br>
+                            <input type="reset" value="Reset" />
+                        </div>
                     </div>
                 </form>
 
                 <!-- List Contact -->
-                <table class="table table-striped-mt5" style="margin-top: 15px">
+                <table class="table table-bordered mt-5" style="margin-top: 15px">
                     <thead>
                         <tr>
                             <th>Name</th>
-                            <th>Gender</th>
+                            <th></th>
                             <th>Phone</th>
                             <th>Email</th>
                             <th>Subject</th>

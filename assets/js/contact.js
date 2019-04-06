@@ -1,4 +1,4 @@
-class Information {
+class Contact {
     constructor(name, gender, phone, email, subject, message) {
         this.name = name;
         this.gender = gender;
@@ -11,21 +11,21 @@ class Information {
 
 class UI {
     static displayContact() {
-        const contactList = Store.getContact();
-        contactList.forEach((Contact) => UI.addContactToList(Contact));
+        const Contact = Store.getContact();
+        Contact.forEach(contact => UI.addContactToList(contact));
     }
 
-    static addContactToList(Contact) {
+    static addContactToList(contact) {
         const list = document.querySelector('#contact-list');
         const row = document.createElement('tr');
 
         row.innerHTML = `
-        <td>${Contact.name}</td>
-        <td>${Contact.gender}</td>
-        <td>${Contact.phone}</td>
-        <td>${Contact.email}</td>
-        <td>${Contact.subject}</td>
-        <td>${Contact.message}</td>
+        <td>${contact.name}</td>
+        <td class="text-center"><img src="images/${contact.gender}.png" alt="${contact.gender} icon"></td>
+        <td>${contact.phone}</td>
+        <td>${contact.email}</td>
+        <td>${contact.subject}</td>
+        <td>${contact.message}</td>
         <td><a href="#" class="btn btn-danger btn-sm delete"> X </a></td>
         `;
         list.appendChild(row);
@@ -41,7 +41,7 @@ class UI {
     }
 
     static deleteContact(el) {
-        if (el.classList.contains('delete')) {
+        if (el.classList.contains("delete")) {
             el.parentElement.parentElement.remove();
         }
     }
@@ -70,30 +70,32 @@ class UI {
 
 class Store {
     static getContact() {
-        let contactList;
-        if (localStorage.getItem('contactList') === null) {
-            contactList = [];
+        let Contact;
+        if (localStorage.getItem("Contact") === null) {
+            Contact = [];
         } else {
-            contactList = JSON.parse(localStorage.getItem('contactList'));
+            Contact = JSON.parse(localStorage.getItem("Contact"));
         }
-        return contactList;
+
+        return Contact;
     }
 
     static addContact(contact) {
-        const contactList = Store.getContact();
-        contactList.push(contact);
-        localStorage.setItem('contactList', JSON.stringify(contactList));
+        const Contact = Store.getContact();
+        Contact.push(contact);
+        localStorage.setItem("Contact", JSON.stringify(Contact));
     }
 
-    static removeContact(isbn) {
-        const contactList = Store.getContact();
+    static removeContact(message) {
+        const Contact = Store.getContact();
 
-        contactList.forEach((contact, index) => {
-            if (contact.isbn === isbn) {
-                contactList.splice(index, 1);
+        Contact.forEach((contact, index) => {
+            if (contact.message === message) {
+                Contact.splice(index, 1);
             }
         });
-        localStorage.setItem('contactList', JSON.stringify(contactList));
+
+        localStorage.setItem("Contact", JSON.stringify(Contact));
     }
 }
 
@@ -113,9 +115,9 @@ document.querySelector('#my-form').addEventListener('submit', (e) => {
         UI.showAlert('Please fill in all fields', 'danger');
     } else {
 
-        if (gender === "Male" || gender === "Famale" || gender === "male" || gender === "famale") {
+        if (gender === "Male" || gender === "Female" || gender === "male" || gender === "female") {
             if (UI.ValidateEmail(email)) {
-                const contact = new Information(name, gender, phone, email, subject, message);
+                const contact = new Contact(name, gender, phone, email, subject, message);
                 UI.addContactToList(contact);
                 Store.addContact(contact);
                 UI.showAlert('Contact Added', 'success');
@@ -127,16 +129,15 @@ document.querySelector('#my-form').addEventListener('submit', (e) => {
 
 
         } else {
-            UI.showAlert('Please fill gender => "Male" or "Famale"', 'danger');
+            UI.showAlert('Please fill gender => "Male" or "Female"', 'danger');
         }
     }
 });
 
-document.querySelector('#contact-list').addEventListener('click', (e) => {
-    e.preventDefault();
+document.querySelector("#contact-list").addEventListener("click", e => {
     UI.deleteContact(e.target);
-
-    Store.removeContact(e.target.parentElement.previousElementSibling.textContent);
-
-    UI.showAlert('Contact Removed', 'success');
+    Store.removeContact(
+        e.target.parentElement.previousElementSibling.textContent
+    );
+    UI.showAlert("contact Removed", "success");
 });

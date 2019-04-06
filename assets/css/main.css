@@ -50,7 +50,7 @@ padding: 5px;
 margin: 5px;
 }
 
-.table.table-striped-mt5 a{
+.table.table-bordered.mt-5 a{
 	background-color: orangered;
 	color: #fff;
 	padding-left: 10px;

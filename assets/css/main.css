@@ -36,6 +36,10 @@ body {
 	line-height: 1;
 }
 
+.container h6{
+	font-size: 5em;
+}
+
 .alert-danger {
 	background: orangered;
 	color: #fff;
@@ -2321,7 +2325,6 @@ input[type="radio"]{
 
 			#main > section.one {
 				background-color: #81918E;
-				background-image: url("../../images/banner.jpg");
 			}
 
 			#main > section.two {
